@@ -27,7 +27,8 @@ docInit.root.style.justifyContent = 'center'
 widthAndheight(docInit.itemContainer,'600px','500px');
 docInit.itemContainer.style.display = 'flex';
 docInit.itemContainer.style.alignItems = 'center'
-docInit.itemContainer.style.overflow = 'hidden'
+// docInit.itemContainer.style.overflow = 'hidden'
+docInit.itemContainer.style.position = 'relative'
 
 const _BASIC_URL = `https://pokeapi.co/api/v2/pokemon/?limit=10`;
 
@@ -54,15 +55,17 @@ const request = new XMLHttpRequest();
       
     });
     
-    let count = 0;
-    docInit.rightbutton.addEventListener('click',function(){
-      docInit.itemContainer.style.transform = `translateX(-410px)`
-      count++;
-      
-    });
-    
-    
+    let a = 0;
+    let itemIndex = 0; //
+    let imgWidth = 200;
 
+    function nextPage(){
+      itemIndex -= imgWidth;
+      docInit.itemContainer.style.transform = `translateX${itemIndex}px`;
+      a += 1;
+    }
+
+    docInit.rightbutton.addEventListener('click',nextPage);
     
 
   });
